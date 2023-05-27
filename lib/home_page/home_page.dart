@@ -1,5 +1,6 @@
 import 'package:ecommerce/catalog_home/catalog_details.dart';
 import 'package:ecommerce/catalog_home/catalog_widget.dart';
+import 'package:ecommerce/items/item_details.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/items/items_page.dart';
 
@@ -21,8 +22,26 @@ class HomePage extends StatelessWidget {
               return GestureDetector(
                 onTap: ()
                 {
-                  Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => ItemPage(categorySelected: CatalogListData.catalogData[index].name)));
+                  if(CatalogListData.catalogData[index].name == "Phones")
+                    {
+                      Navigator.push(context, MaterialPageRoute(
+                          builder: (context) => ItemPage(categorySelected: CatalogListData.catalogData[index].name,createCategory: PhoneList.itemsList)));
+                    }
+                  if(CatalogListData.catalogData[index].name == "Consoles")
+                  {
+                    Navigator.push(context, MaterialPageRoute(
+                        builder: (context) => ItemPage(categorySelected: CatalogListData.catalogData[index].name,createCategory: ConsoleList.itemsList)));
+                  }
+                  if(CatalogListData.catalogData[index].name == "TV")
+                  {
+                    Navigator.push(context, MaterialPageRoute(
+                        builder: (context) => ItemPage(categorySelected: CatalogListData.catalogData[index].name,createCategory: TvList.itemsList)));
+                  }
+                  if(CatalogListData.catalogData[index].name == "Laptop")
+                  {
+                    Navigator.push(context, MaterialPageRoute(
+                        builder: (context) => ItemPage(categorySelected: CatalogListData.catalogData[index].name,createCategory: LaptopList.itemsList)));
+                  }
                 },
                   child:  CatalogWidget(catalog: CatalogListData.catalogData[index])
               );
@@ -91,8 +110,8 @@ class HomePage extends StatelessWidget {
             Container(
               padding: const EdgeInsetsDirectional.symmetric(horizontal: 0, vertical: 10),
               color: Colors.blue,
-              child: Column(
-              children: const [CircleAvatar(
+              child: const Column(
+              children: [CircleAvatar(
                 radius: 40,
                 backgroundImage: AssetImage("images/coffee_Drink.png")),
               /*Row(
