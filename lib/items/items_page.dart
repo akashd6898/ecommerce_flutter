@@ -1,3 +1,4 @@
+import 'package:ecommerce/product_view/product_page.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/items/items_tile.dart';
 
@@ -15,8 +16,14 @@ class ItemPage extends StatelessWidget {
       body: ListView.builder(
       itemCount: createCategory.length,
       itemBuilder: (context, index) {
-      return ItemsTile(
-      item: createCategory[index]
+      return GestureDetector(
+        onTap: (){
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const ProductPage()));
+        },
+        child: ItemsTile(
+        item: createCategory[index]
+        ),
       );
       }),
       );

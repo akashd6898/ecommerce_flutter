@@ -7,9 +7,11 @@ class ItemDetails
   double price = 0.0;
   String description = '';
   String image = '';
+  List<String>? imageSet = [''];
+  static const zeroNull =  '0';
   //double truePrice = double.parse(price);
 
-  ItemDetails({required this.category, required this.brand , required this.model, required this.color, required this.price, required this.description, required this.image});
+  ItemDetails({required this.category, required this.brand , required this.model, required this.color, required this.price, required this.description, required this.image, this.imageSet = const [zeroNull]});
 }
 class PhoneList
 {
@@ -22,6 +24,10 @@ color: "Gold",
 price: 10000.00,
 description: 'iphone Xs model 2018',
 image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.qIHwGBO4dfsqXPUfLaEEaAHaOV%26pid%3DApi&f=1&ipt=88ce9f3a2b2bd0afb83a07b16488181d5b898b7f2880757c3a7c01dcb9ded684&ipo=images",
+imageSet: ['https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.pu6QL5Apg8OxbF2_XNfBrAHaGk%26pid%3DApi&f=1&ipt=76ab5f84bbb8520fe615e360004c4121f3a805985674059eaf7fe2c6485165b5&ipo=images',
+  'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.RnWJ6zotyIriq_eRbDW5mAHaHa%26pid%3DApi&f=1&ipt=43e2a6f907d9c478b434f0e82ccdc84950b694b22ca7f9ede2c12e06946fe53e&ipo=images',
+  'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.C4-ZG8jaE5cw0UUk_cuERAHaHa%26pid%3DApi&f=1&ipt=6b0f0c76cfc88e382ad5912ead8b41f778ba27a9d97d6aef9374520769bc4501&ipo=images'
+]
 ),
   ItemDetails
     (
@@ -32,6 +38,10 @@ image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing
       price: 20000.00,
       description: 'iphone 11 model 2019',
       image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ffoppo.fi%2Fwp-content%2Fuploads%2F2020%2F08%2FIPHONE-11-RED.jpg&f=1&nofb=1&ipt=1062427f6c0132cca30e3ae5ab6c7668d9cebc427b61f24225ee2f0e455769f4&ipo=images",
+      imageSet: ['https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.pu6QL5Apg8OxbF2_XNfBrAHaGk%26pid%3DApi&f=1&ipt=76ab5f84bbb8520fe615e360004c4121f3a805985674059eaf7fe2c6485165b5&ipo=images',
+        'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.RnWJ6zotyIriq_eRbDW5mAHaHa%26pid%3DApi&f=1&ipt=43e2a6f907d9c478b434f0e82ccdc84950b694b22ca7f9ede2c12e06946fe53e&ipo=images',
+        'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.C4-ZG8jaE5cw0UUk_cuERAHaHa%26pid%3DApi&f=1&ipt=6b0f0c76cfc88e382ad5912ead8b41f778ba27a9d97d6aef9374520769bc4501&ipo=images'
+      ]
   )
 ];
 }
