@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ecommerce/items/items_page.dart';
+
 
 class CatalogWidget extends StatefulWidget {
   dynamic catalog;

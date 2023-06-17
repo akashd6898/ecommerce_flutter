@@ -19,7 +19,7 @@ class ItemPage extends StatelessWidget {
       return GestureDetector(
         onTap: (){
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const ProductPage()));
+              MaterialPageRoute(builder: (context) => ProductPage(productDetails: createCategory[index])));
         },
         child: ItemsTile(
         item: createCategory[index]

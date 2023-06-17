@@ -1,4 +1,4 @@
-import 'package:ecommerce/items/items_page.dart';
+import 'package:ecommerce/checkout_page/checkout_page.dart';
 import 'package:flutter/material.dart';
 import 'home_page/home_page.dart';
 import 'login_page/login_page.dart';
@@ -17,11 +17,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       //home: const HomePage(),
-      initialRoute: MyRoutes.homepage,
+      initialRoute: MyRoutes.checkoutpage,
       routes: {
         MyRoutes.loginpage: (context) => const LoginPage(),
         MyRoutes.homepage: (context) => const HomePage(),
-        //MyRoutes.itempage: (context) => ItemPage()
+        MyRoutes.checkoutpage: (context) => const CheckoutPage()
       });
   }
 }
