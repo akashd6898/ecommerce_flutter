@@ -1,5 +1,6 @@
 class ItemDetails
 {
+  String itemCode = '';
   String brand = '';
   String category = '';
   String model = '';
@@ -9,12 +10,13 @@ class ItemDetails
   String image = '';
   List<String>? imageSet = [''];
 
-  ItemDetails({required this.category, required this.brand , required this.model, required this.color, required this.price, required this.description, required this.image, this.imageSet});
+  ItemDetails({required this.itemCode,required this.category, required this.brand , required this.model, required this.color, required this.price, required this.description, required this.image, this.imageSet});
 }
 class PhoneList
 {
 static final itemsList = [ItemDetails
 (
+itemCode: "Applei10sG64",
 category: "Mobile Phone",
 brand: "Apple",
 model: "iphone Xs",
@@ -29,6 +31,7 @@ imageSet: ['https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.
 ),
   ItemDetails
     (
+      itemCode: "Applei11R64",
       category: "Mobile Phone",
       brand: "Apple",
       model: "iphone 11 ",
@@ -47,6 +50,7 @@ class ConsoleList
 {
   static final itemsList = [ItemDetails
     (
+    itemCode: "SonyPS5WDigital",
     category: "Console",
     brand: "Sony",
     model: "Playstation 5 Digital",
@@ -61,6 +65,7 @@ class ConsoleList
   ),
     ItemDetails
       (
+      itemCode: "SonyPS5WDisc",
       category: "Console",
       brand: "Sony",
       model: "Playstation 5 Disc",
@@ -80,6 +85,7 @@ class TvList
 {
   static final itemsList = [ItemDetails
     (
+    itemCode: "LGQLEDB",
     category: "TV",
     brand: "LG",
     model: "QLED",
@@ -94,6 +100,7 @@ class TvList
   ),
     ItemDetails
       (
+      itemCode: "LGOLEDB",
       category: "TV",
       brand: "LG",
       model: "OLED",
@@ -112,6 +119,7 @@ class LaptopList
 {
   static final itemsList = [ItemDetails
   (
+  itemCode: "AppleMAGM2256",
   category: "Laptop",
   brand: "Apple",
   model: "MacBook Air",
@@ -126,6 +134,7 @@ class LaptopList
   ),
   ItemDetails
   (
+  itemCode: "AppleMPGrM2256",
   category: "Laptop",
   brand: "Apple",
   model: "MacBook Pro",

@@ -1,3 +1,4 @@
+import 'package:ecommerce/checkout_page/checkout_page_details.dart';
 import 'package:ecommerce/routes/routes.dart';
 import 'package:flutter/material.dart';
 
@@ -10,8 +11,6 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
-  /*int selectedIcon = 0;
-  final*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,7 +68,13 @@ class _ProductPageState extends State<ProductPage> {
              child: Row(
                mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children:[
-                  ElevatedButton(onPressed: null,
+                  ElevatedButton(onPressed: ()
+                      {
+                        CheckoutPageDetails(checkoutProductCode: widget.productDetails.itemCode,
+                            checkoutProductImage: widget.productDetails.image,
+                            checkoutProductPrice: widget.productDetails.price);
+                        CheckoutPrice(count: 1, price: widget.productDetails.price);
+                      },
                       style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all<Color>(
                             Colors.blue
@@ -110,7 +115,7 @@ class _ProductPageState extends State<ProductPage> {
               }
             if(index == 1)
             {
-              Navigator.pushNamed(context, MyRoutes.homepage);
+              Navigator.pushNamed(context, MyRoutes.checkoutpage);
             }
             if(index == 2)
             {

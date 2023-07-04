@@ -16,12 +16,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      //home: const HomePage(),
-      initialRoute: MyRoutes.checkoutpage,
+      home: const HomePage(),
+      //initialRoute: MyRoutes.checkoutpage,
       routes: {
         MyRoutes.loginpage: (context) => const LoginPage(),
         MyRoutes.homepage: (context) => const HomePage(),
-        MyRoutes.checkoutpage: (context) => const CheckoutPage()
+        //MyRoutes.productpage: (context) => const ProductPage(productDetails: productDetails)
+        MyRoutes.checkoutpage: (context) => CheckoutPage()
       });
   }
 }
