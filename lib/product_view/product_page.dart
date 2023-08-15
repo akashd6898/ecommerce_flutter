@@ -1,4 +1,7 @@
+import 'package:ecommerce/checkout_page/checkout_page.dart';
 import 'package:ecommerce/checkout_page/checkout_page_details.dart';
+import 'package:ecommerce/favorite_page/favourite_page_details.dart';
+import 'package:provider/provider.dart';
 import 'package:ecommerce/routes/routes.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +16,7 @@ class ProductPage extends StatefulWidget {
 class _ProductPageState extends State<ProductPage> {
   @override
   Widget build(BuildContext context) {
+    final priceObj = Provider.of<Price>(context);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -69,12 +73,13 @@ class _ProductPageState extends State<ProductPage> {
                mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children:[
                   ElevatedButton(onPressed: ()
-                      {
-                        CheckoutPageDetails(checkoutProductCode: widget.productDetails.itemCode,
-                            checkoutProductImage: widget.productDetails.image,
-                            checkoutProductPrice: widget.productDetails.price);
-                        CheckoutPrice(count: 1, price: widget.productDetails.price);
-                      },
+                 {
+                 CheckoutPageDetails(checkoutProductCode: widget.productDetails.itemCode,
+                 checkoutProductImage: widget.productDetails.image,
+                 checkoutProductModel: widget.productDetails.model,
+                 checkoutProductPrice: widget.productDetails.price);
+                 priceObj.priceAdd(widget.productDetails.price);
+                 },
                       style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all<Color>(
                             Colors.blue
@@ -87,7 +92,16 @@ class _ProductPageState extends State<ProductPage> {
                           Icons.add_shopping_cart,
                               color: Colors.white
                           )),
-                 ElevatedButton(onPressed: null,
+                 ElevatedButton(
+                     onPressed: ()
+                     {
+                       FavouritePageDetails(favouriteProductCode: widget.productDetails.itemCode,
+                           favouriteProductImage: widget.productDetails.image,
+                           favouriteProductModel: widget.productDetails.model,
+                           favouriteProductPrice: widget.productDetails.price,
+                           favouriteProductDescription: widget.productDetails.description
+                       );
+                     },
                      style: ButtonStyle(
                          backgroundColor: MaterialStateProperty.all<Color>(
                              Colors.blue
@@ -119,7 +133,7 @@ class _ProductPageState extends State<ProductPage> {
             }
             if(index == 2)
             {
-              Navigator.pushNamed(context, MyRoutes.homepage);
+              Navigator.pushNamed(context, MyRoutes.favouritespage);
             }
           },
           items: [

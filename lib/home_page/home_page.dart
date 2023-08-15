@@ -3,6 +3,7 @@ import 'package:ecommerce/catalog_home/catalog_widget.dart';
 import 'package:ecommerce/items/item_details.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/items/items_page.dart';
+import 'package:ecommerce/routes/routes.dart';
 
 
 class HomePage extends StatelessWidget {
@@ -133,23 +134,48 @@ class HomePage extends StatelessWidget {
               color: Colors.white,
               height: 30.0,
             ),
-            const ListTile(
-              shape: BorderDirectional(top: BorderSide(
+            ListTile(
+                shape: const BorderDirectional(top: BorderSide(
+                  style:BorderStyle.solid,
+                ),bottom: BorderSide(
+                  style: BorderStyle.solid,
+                )),
+                iconColor: Colors.white,
+                leading: const Icon(Icons.shopping_cart),
+                tileColor: Colors.blue,
+                title: const Text("Checkout",
+                style: TextStyle(
+                  fontSize: 18.0,
+                  color: Colors.white
+                )),
+              onTap:() {
+                Navigator.pushNamed(context, MyRoutes.checkoutpage);
+              },
+              ),
+            const Divider(
+              color: Colors.white,
+              height: 30.0,
+            ),
+            ListTile(
+              shape: const BorderDirectional(top: BorderSide(
                 style:BorderStyle.solid,
               ),bottom: BorderSide(
                 style: BorderStyle.solid,
               )),
-              iconColor: Colors.white,
-              leading: Icon(Icons.home),
+              iconColor: Colors.pink[200],
+              leading: const Icon(Icons.favorite),
               tileColor: Colors.blue,
-              title: Text("Home",
-              style: TextStyle(
-                fontSize: 18.0,
-                color: Colors.white
-              )),
+              title: const Text("Favourites",
+                  style: TextStyle(
+                      fontSize: 18.0,
+                      color: Colors.white
+                  )),
+              onTap:() {
+                Navigator.pushNamed(context, MyRoutes.favouritespage);
+              },
             ),
             const Divider(
-              color: Colors.white,
+              color: Colors.white70,
               height: 30.0,
             ),
             const ListTile(

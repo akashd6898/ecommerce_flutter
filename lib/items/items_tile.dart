@@ -24,8 +24,6 @@ class _ItemsTileState extends State<ItemsTile> {
       isThreeLine: true,
       tileColor: Colors.white70,
       horizontalTitleGap: 16.0,
-      //selectedTileColor: Colors.blue,
-      //contentPadding: const EdgeInsetsDirectional.symmetric(horizontal: 30),
     ));
   }
 }
