@@ -5,4 +5,5 @@ class MyRoutes{
   static String checkoutpage = '/checkoutpage';
   static String productpage = '/productpage';
   static String favouritespage = '/favouritespage';
+  static String signuppage = '/signuppage';
 }

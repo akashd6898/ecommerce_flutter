@@ -29,6 +29,13 @@
             {
               "client_id": "16204209836-1t7nvnp9fiibkd7q0dtv2ishcd46bmrv.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "16204209836-0re9et4k9krf83ej137qfm698bmcdlta.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.ecommerce"
+              }
             }
           ]
         }

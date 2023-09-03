@@ -48,7 +48,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                     index) {
                                   final item = CheckoutPageDetails
                                       .checkoutList[index];
-                                 int count = 1;
                                   //Subtotal();
                                   return Padding(
                                     padding: const EdgeInsets.all(5),
