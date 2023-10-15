@@ -4,6 +4,7 @@ import 'package:ecommerce/items/item_details.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/items/items_page.dart';
 import 'package:ecommerce/routes/routes.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 
 class HomePage extends StatelessWidget {
@@ -48,62 +49,6 @@ class HomePage extends StatelessWidget {
               );
             },
         ),
-      /*ListView.builder(itemCount: ProductsList.itemsList.length,
-      itemBuilder: (context, index){
-        return ItemsTile(
-          item: ProductsList.itemsList[index]
-        );
-      },
-    ),*/
-      /*Center(child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [Container(
-          width: 300.0,
-          height: 150.0,
-          constraints: const BoxConstraints(
-            maxHeight: double.infinity,
-            maxWidth: double.infinity,
-          ),
-          decoration: const BoxDecoration(
-              color: Colors.deepOrange,
-              boxShadow: [BoxShadow(
-                  color: Colors.grey,
-                  offset: Offset(2.0, 2.0),
-                  blurRadius: 5.0
-              )]),
-        child: Stack(
-        fit: StackFit.expand,
-        children: [
-          const Image(image: NetworkImage("https://i0.wp.com/www.smartprix.com/bytes/wp-content/uploads/2022/04/New-year-new-phone-Top-5-smartphones-to-launch-in-2022-scaled.jpg?ssl=1&quality=80&w=f"),
-          fit: BoxFit.fill,
-          semanticLabel: "Mobile Phones",
-          ),
-          Positioned(left: 0.0,bottom: 0.0,
-              child: Container(
-                width: 150.0,
-                height: 25.0,
-                color: Colors.white,
-                child: const Text("Mobile Phones",
-
-                  style: TextStyle(
-                      backgroundColor: Colors.white,
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.bold,
-                    letterSpacing: 1.0,
-                    //textBaseline:
-                  ),),
-              )
-            )
-        ]))],
-      )),*/
-
-      /*ListView.builder(itemCount: ProductsList.itemsList.length,
-      itemBuilder: (context, index){
-        return ItemsTile(
-          item: ProductsList.itemsList[index]
-        );
-      },
-    ),*/
       drawer: Drawer(
         backgroundColor: Colors.white,
         child: ListView(
@@ -134,7 +79,8 @@ class HomePage extends StatelessWidget {
               color: Colors.white,
               height: 30.0,
             ),
-            ListTile(
+            drawerListTile("Checkout", Icons.shopping_cart, Colors.black, context, MyRoutes.checkoutpage),
+            /*ListTile(
                 shape: const BorderDirectional(top: BorderSide(
                   style:BorderStyle.solid,
                 ),bottom: BorderSide(
@@ -151,12 +97,13 @@ class HomePage extends StatelessWidget {
               onTap:() {
                 Navigator.pushNamed(context, MyRoutes.checkoutpage);
               },
-              ),
+              ),*/
             const Divider(
               color: Colors.white,
               height: 30.0,
             ),
-            ListTile(
+            drawerListTile("Favourites", Icons.favorite_outlined, Colors.pink.shade200, context, MyRoutes.favouritespage),
+            /*ListTile(
               shape: const BorderDirectional(top: BorderSide(
                 style:BorderStyle.solid,
               ),bottom: BorderSide(
@@ -173,12 +120,13 @@ class HomePage extends StatelessWidget {
               onTap:() {
                 Navigator.pushNamed(context, MyRoutes.favouritespage);
               },
-            ),
+            ),*/
             const Divider(
               color: Colors.white70,
               height: 30.0,
             ),
-            const ListTile(
+            drawerListTile("Orders", Icons.shopping_basket_outlined, Colors.black, context, "To be filled"),
+            /*const ListTile(
               shape: BorderDirectional(top: BorderSide(
                 style:BorderStyle.solid,
               ),bottom: BorderSide(
@@ -192,12 +140,13 @@ class HomePage extends StatelessWidget {
                       fontSize: 18.0,
                       color: Colors.white
                   )),
-            ),
+            ),*/
             const Divider(
               color: Colors.white,
               height: 30.0,
             ),
-            const ListTile(
+            drawerListTile("Settings", Icons.settings, Colors.black, context, "To be filled"),
+            /*const ListTile(
               shape: BorderDirectional(top: BorderSide(
               ),bottom: BorderSide(
                 style: BorderStyle.solid,
@@ -210,29 +159,83 @@ class HomePage extends StatelessWidget {
                       fontSize: 18.0,
                       color: Colors.white
                   )),
-            ),
+            ),*/
             const Divider(
               color: Colors.white,
               height: 30.0,
             ),
-            const ListTile(
-              shape: BorderDirectional(top: BorderSide(
+            drawerListTile("Sign out", Icons.exit_to_app_rounded, Colors.black, context, MyRoutes.loginpage),
+            /*const Divider(
+              color: Colors.white,
+              height: 30.0,
+            ),
+            ListTile(
+              shape: const BorderDirectional(top: BorderSide(
                 style:BorderStyle.solid,
               ),bottom: BorderSide(
                 style: BorderStyle.solid,
               )),
               iconColor: Colors.white,
-              leading: Icon(Icons.mail),
+              leading: const Icon(Icons.mail),
               tileColor: Colors.blue,
-              title: Text("Support",
+              title: const Text("Sign out",
                   style: TextStyle(
                       fontSize: 18.0,
                       color: Colors.white
                   )),
-            ),
+              onTap: () async
+              {
+                try {
+                  await FirebaseAuth.instance.signOut();
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text("See you soon!"),
+                        backgroundColor: Colors.green,
+                      ));
+                  Navigator.pushReplacementNamed(context, MyRoutes.loginpage);
+                } on FirebaseAuthException catch (e) {
+                  print(e.code);
+                }
+              }
+            )*/
           ],
         )
       ),
     );
   }
+}
+
+ListTile drawerListTile(String itemName, IconData itemIcon, Color iconPaint, BuildContext context, String selection)
+{
+  return ListTile(
+    iconColor: iconPaint,
+    leading: Icon(itemIcon),
+    title: Text(itemName),
+    selectedColor: Colors.blue,
+    tileColor: Colors.white,
+    textColor: Colors.black,
+    titleTextStyle: const TextStyle(fontWeight: FontWeight.bold,
+    fontSize: 18.0),
+    onTap: () async
+    {
+      if(itemName == "Sign out")
+        {
+          try {
+            await FirebaseAuth.instance.signOut();
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text("See you soon!"),
+                  backgroundColor: Colors.green,
+                ));
+            Navigator.pushReplacementNamed(context, selection);
+          } on FirebaseAuthException catch (e) {
+            print(e.code);
+          }
+        }
+        else
+          {
+            Navigator.pushNamed(context, selection);
+          }
+    },
+  );
 }

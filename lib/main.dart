@@ -10,14 +10,15 @@ import 'routes/routes.dart';
 import 'package:ecommerce/checkout_page/checkout_page_details.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-
+import 'package:get/get.dart';
 
 void main() async{
   runApp(MultiProvider(providers: [
       ChangeNotifierProvider(create: (context) => Price()),
       ChangeNotifierProvider(create: (context) => FavouriteDelete())
   ],
-      child: const MyApp()));
+      child: const GetMaterialApp(home: MyApp())),
+  );
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

@@ -1,7 +1,8 @@
+import 'package:ecommerce/payment/payment_page.dart';
 import "package:flutter/material.dart";
 import 'package:ecommerce/checkout_page/checkout_page_details.dart';
 import 'package:provider/provider.dart';
-
+import 'package:get/get.dart';
 
 class CheckoutPage extends StatefulWidget {
   const CheckoutPage({super.key});
@@ -212,32 +213,53 @@ class _CheckoutPageState extends State<CheckoutPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Container(
-                                padding: const EdgeInsets.all(5),
-                                height: 40,
-                                width: 100,
-                                alignment: Alignment.center,
-                                decoration: const BoxDecoration(
-                                    shape: BoxShape.rectangle,
-                                    borderRadius: BorderRadiusDirectional.all(
-                                        Radius.circular(7)),
-                                    gradient: LinearGradient(colors: [
-                                      Colors.cyanAccent,
-                                      Colors.lightBlueAccent,
-                                      Colors.blue
-                                    ]),
-                                    boxShadow: [BoxShadow(
-                                        color: Colors.black12,
-                                        offset: Offset(0, 3)
-                                    )
-                                    ]
-                                ),
-                                child: const Text(
-                                  "Pay",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18,
+                              GestureDetector(
+                                onTap: ()
+                                {
+                                  if(priceObj.total != 0)
+                                    {
+                                      Get.to(() => Payment(total: priceObj.total));
+                                    }
+                                  else
+                                    {
+                                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                        content: const Text("Cart is empty, Add items to proceed",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                        ),
+                                        ),
+                                        backgroundColor: Colors.red[400],
+                                      ));
+                                    }
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.all(5),
+                                  height: 40,
+                                  width: 100,
+                                  alignment: Alignment.center,
+                                  decoration: const BoxDecoration(
+                                      shape: BoxShape.rectangle,
+                                      borderRadius: BorderRadiusDirectional.all(
+                                          Radius.circular(7)),
+                                      gradient: LinearGradient(colors: [
+                                        Colors.cyanAccent,
+                                        Colors.lightBlueAccent,
+                                        Colors.blue
+                                      ]),
+                                      boxShadow: [BoxShadow(
+                                          color: Colors.black12,
+                                          offset: Offset(0, 3)
+                                      )
+                                      ]
+                                  ),
+                                  child: const Text(
+                                    "Pay",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                    ),
                                   ),
                                 ),
                               )
