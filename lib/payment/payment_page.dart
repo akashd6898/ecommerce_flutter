@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ecommerce/checkout_page/checkout_page_details.dart';
-import 'dart:async';
-import 'dart:convert';
-//import 'package:http/http.dart';
-import 'package:get/get_connect/connect.dart';
+import 'package:pay/pay.dart';
+import 'package:ecommerce/payment_configuration/payment_configurations.dart'as payment_configurations;
+
+
 
 
 class PaymentController extends GetxController
@@ -111,15 +110,101 @@ class _PaymentState extends State<Payment> {
     );
   }
 }
+/*
+Widget buildApplePayButton() {
+  void onApplePayResult(paymentResult) {
+    debugPrint(paymentResult.toString());
+  }
+  return ApplePayButton(
+    paymentConfiguration: PaymentConfiguration.fromJsonString(
+        payment_configurations.defaultApplePay),
+    paymentItems: _paymentItems,
+    style: ApplePayButtonStyle.black,
+    type: ApplePayButtonType.buy,
+    margin: const EdgeInsets.only(top: 15.0),
+    onPaymentResult: onApplePayResult,
+    loadingIndicator: const Center(
+      child: CircularProgressIndicator(),
+    ),
+  );
+}
+*/
+
+/*
+Widget buildGooglePayButton() {
+  void onGooglePayResult(paymentResult) {
+    debugPrint(paymentResult.toString());
+  }
+  return GooglePayButton(
+      paymentConfiguration: PaymentConfiguration.fromJsonString(
+          payment_configurations.defaultGooglePay),
+      paymentItems: _paymentItems,
+      type: GooglePayButtonType.buy,
+      margin: const EdgeInsets.only(top: 15.0),
+      onPaymentResult: onGooglePayResult,
+      loadingIndicator: const Center(
+        child: CircularProgressIndicator(),
+      )
+  );
+}
+*/
+
 
 class UPISelect extends GetxController
 {
   BuildContext context;
+  static const _paymentItems = [
+    PaymentItem(
+      label: 'Total',
+      amount: '1',
+      status: PaymentItemStatus.final_price,
+    )
+  ];
+
+
+
   UPISelect(this.context);
-  //final upiHandler = new Pay();
+  /*Widget paymentButton()
+  {
+    return Column(
+      children: [
+    GooglePayButton(
+    paymentConfiguration: PaymentConfiguration.fromJsonString(
+    payment_configurations.defaultGooglePay),
+    paymentItems: _paymentItems,
+    type: GooglePayButtonType.buy,
+    margin: const EdgeInsets.only(top: 15.0),
+    onPaymentResult: onGooglePayResult,
+    loadingIndicator: const Center(
+    child: CircularProgressIndicator(),
+    )
+    ),
+    ApplePayButton(
+    paymentConfiguration: PaymentConfiguration.fromJsonString(
+    payment_configurations.defaultApplePay),
+    paymentItems: _paymentItems,
+    style: ApplePayButtonStyle.black,
+    type: ApplePayButtonType.buy,
+    margin: const EdgeInsets.only(top: 15.0),
+    onPaymentResult: onApplePayResult,
+    loadingIndicator: const Center(
+    child: CircularProgressIndicator(),
+    ),
+    )
+      ],
+    );*/
+
+
+
   //final codConfirm = CODOrderPlaced();
   final TextEditingController upiID = TextEditingController();
   Container upiSelect(String payOption) {
+    void onGooglePayResult(paymentResult) {
+      debugPrint(paymentResult.toString());
+    }
+    void onApplePayResult(paymentResult) {
+      debugPrint(paymentResult.toString());
+    }
     if (payOption == 'upi')
     {
       return Container(
@@ -135,22 +220,32 @@ class UPISelect extends GetxController
               hintText: "Enter UPI ID",
             ),
           ),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                GestureDetector(
-                  onTap: ()
-          {
-          },
-                  child: const Image(image: AssetImage("images/GPay_Acceptance_Mark_800.png"),
+      GooglePayButton(
+          paymentConfiguration: PaymentConfiguration.fromJsonString(
+              payment_configurations.defaultGooglePay),
+          paymentItems: _paymentItems,
+          type: GooglePayButtonType.buy,
+          margin: const EdgeInsets.only(top: 15.0),
+          onPaymentResult: onGooglePayResult,
+          loadingIndicator: const Center(
+            child: CircularProgressIndicator(),
+          )
+      ),
+          ApplePayButton(
+            paymentConfiguration: PaymentConfiguration.fromJsonString(
+                payment_configurations.defaultApplePay),
+            paymentItems: _paymentItems,
+            style: ApplePayButtonStyle.black,
+            type: ApplePayButtonType.buy,
+            margin: const EdgeInsets.only(top: 15.0),
+            onPaymentResult: onApplePayResult,
+            loadingIndicator: const Center(
+              child: CircularProgressIndicator(),
+            ),
+          )
+        /*const Image(image: AssetImage("images/GPay_Acceptance_Mark_800.png"),
                   height: 100,
-                    width: 100,
-                  ),
-                )
-              ],
-            )
+                    width: 100,*/
           ]
         ),
       );
@@ -215,9 +310,27 @@ class UPISelect extends GetxController
 
 }*/
 
+/*
 class UPIIDPayment
+{
+  static const _paymentItems = [
+    PaymentItem(
+      label: 'Total',
+      amount: '99.99',
+      status: PaymentItemStatus.final_price,
+    )
+  ];
+  UPIIDPayment()
   {
-    final get_connect = GetConnect();
+
+  }
+
+  static void onGooglePayResult(paymentResult) {
+    debugPrint(paymentResult.toString());
+  }
+
+*/
+/*final get_connect = GetConnect();
     Future makePayment(String currencyCode, double total, String upiId) async {
       // Create a payment request.
       Map<String, dynamic> paymentRequest = {
@@ -234,22 +347,29 @@ class UPIIDPayment
           'Content-Type': 'application/json',
         },
       );
+      try {
+        // Parse the response.
+        Map<String, dynamic> responseData = jsonDecode(response.body);
 
-      // Parse the response.
-      Map<String, dynamic> responseData = jsonDecode(response.body);
-
-      // Check if the payment was successful.
-      if (responseData['status'] == 'success') {
-        print("Payment success");
-        //return PaymentResult.success();
-      } else {
-        print("Payment not successful");
-        //return PaymentResult.error(responseData['error']);
+        // Check if the payment was successful.
+        if (responseData['status'] == 'success') {
+          print("Payment success");
+          //return PaymentResult.success();
+        } else {
+          print("Payment not successful");
+          //return PaymentResult.error(responseData['error']);
+        }
       }
-    }
-    //PaymentResult paymentResult = await makePayment('INR', 10.00, '9840801041@ybl');
-  // Create a payment request with the UPI ID of the recipient.
-  /*PaymentRequest paymentRequest = await Pay.createPaymentRequest(
+      catch(error)
+      {
+        print(error);
+      }
+    }*//*
+
+//PaymentResult paymentResult = await makePayment('INR', 10.00, '9840801041@ybl');
+// Create a payment request with the UPI ID of the recipient.
+*/
+/*PaymentRequest paymentRequest = await Pay.createPaymentRequest(
   currencyCode: 'INR',
   upiId: '9840801041@ybl',
   );
@@ -268,5 +388,7 @@ class UPIIDPayment
   else
   {
   print("please install app");
-  }*/
-  }
+  }*//*
+
+}
+*/
