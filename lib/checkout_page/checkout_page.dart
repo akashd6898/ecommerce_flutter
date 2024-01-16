@@ -83,7 +83,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                               CheckoutPageDetails(checkoutProductCode: item[0],
                                                   checkoutProductImage: item[1],
                                                   checkoutProductModel: item[2],
-                                                  checkoutProductPrice: item[3]);
+                                                  checkoutProductPrice: item[3],
+                                                checkoutProductBrand: item[4],);
                                               priceObj.priceAdd(item[3]);
                                             },
                                             icon: const Icon(Icons.add,
@@ -273,3 +274,4 @@ class _CheckoutPageState extends State<CheckoutPage> {
         );
   }
 }
+

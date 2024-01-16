@@ -2,6 +2,8 @@ import 'package:ecommerce/checkout_page/checkout_page.dart';
 import 'package:ecommerce/favorite_page/favourite_page.dart';
 import 'package:ecommerce/favorite_page/favourite_page_details.dart';
 import 'package:ecommerce/login_page/signup_page.dart';
+import 'package:ecommerce/settings_page/settings_page.dart';
+import 'package:ecommerce/orders/orders_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'home_page/home_page.dart';
@@ -39,7 +41,9 @@ class MyApp extends StatelessWidget {
         MyRoutes.homepage: (context) => const HomePage(),
         MyRoutes.checkoutpage: (context) => const CheckoutPage(),
         MyRoutes.favouritespage: (context) => const Favourites(),
-        MyRoutes.signuppage: (context) => const Signup()
+        MyRoutes.signuppage: (context) => const Signup(),
+        MyRoutes.settingspage: (context) => const SettingsPage(),
+        MyRoutes.orderspage: (context) => OrderPage(),
       });
   }
 }

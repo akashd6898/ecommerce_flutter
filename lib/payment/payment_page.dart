@@ -1,8 +1,10 @@
+import 'package:ecommerce/checkout_page/checkout_page_details.dart';
+import 'package:ecommerce/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pay/pay.dart';
 import 'package:ecommerce/payment_configuration/payment_configurations.dart'as payment_configurations;
-
+import 'package:ecommerce/orders/orders_page.dart';
 
 
 
@@ -152,6 +154,7 @@ Widget buildGooglePayButton() {
 
 class UPISelect extends GetxController
 {
+  
   BuildContext context;
   static const _paymentItems = [
     PaymentItem(
@@ -160,43 +163,8 @@ class UPISelect extends GetxController
       status: PaymentItemStatus.final_price,
     )
   ];
-
-
-
+  final orderSetupCall = OrderPageDetails(paymentType: "COD");
   UPISelect(this.context);
-  /*Widget paymentButton()
-  {
-    return Column(
-      children: [
-    GooglePayButton(
-    paymentConfiguration: PaymentConfiguration.fromJsonString(
-    payment_configurations.defaultGooglePay),
-    paymentItems: _paymentItems,
-    type: GooglePayButtonType.buy,
-    margin: const EdgeInsets.only(top: 15.0),
-    onPaymentResult: onGooglePayResult,
-    loadingIndicator: const Center(
-    child: CircularProgressIndicator(),
-    )
-    ),
-    ApplePayButton(
-    paymentConfiguration: PaymentConfiguration.fromJsonString(
-    payment_configurations.defaultApplePay),
-    paymentItems: _paymentItems,
-    style: ApplePayButtonStyle.black,
-    type: ApplePayButtonType.buy,
-    margin: const EdgeInsets.only(top: 15.0),
-    onPaymentResult: onApplePayResult,
-    loadingIndicator: const Center(
-    child: CircularProgressIndicator(),
-    ),
-    )
-      ],
-    );*/
-
-
-
-  //final codConfirm = CODOrderPlaced();
   final TextEditingController upiID = TextEditingController();
   Container upiSelect(String payOption) {
     void onGooglePayResult(paymentResult) {
@@ -262,6 +230,9 @@ class UPISelect extends GetxController
             children: [
               ElevatedButton(onPressed: ()async
               {
+                //orderPlaced = true;
+                await orderSetupCall.ordersItemCodes();
+                await orderSetupCall.orderPageSetup();
                 await ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                   content: Text("Order placed",
                     textAlign: TextAlign.center,
@@ -271,7 +242,8 @@ class UPISelect extends GetxController
                   ),
                   backgroundColor: Colors.green,
                 ));
-
+                CheckoutPageDetails.checkoutList.clear();
+                Navigator.pushNamed(context, MyRoutes.homepage);
                 //codConfirm.codOrderPlacedConfirmation(context);
               },
               style: const ButtonStyle(

@@ -1,6 +1,7 @@
 import 'package:ecommerce/catalog_home/catalog_details.dart';
 import 'package:ecommerce/catalog_home/catalog_widget.dart';
 import 'package:ecommerce/items/item_details.dart';
+import 'package:ecommerce/orders/orders_page.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/items/items_page.dart';
 import 'package:ecommerce/routes/routes.dart';
@@ -125,41 +126,13 @@ class HomePage extends StatelessWidget {
               color: Colors.white70,
               height: 30.0,
             ),
-            drawerListTile("Orders", Icons.shopping_basket_outlined, Colors.black, context, "To be filled"),
-            /*const ListTile(
-              shape: BorderDirectional(top: BorderSide(
-                style:BorderStyle.solid,
-              ),bottom: BorderSide(
-                style: BorderStyle.solid,
-              )),
-              iconColor: Colors.white,
-              leading: Icon(Icons.shopping_basket_outlined),
-              tileColor: Colors.blue,
-              title: Text("Orders",
-                  style: TextStyle(
-                      fontSize: 18.0,
-                      color: Colors.white
-                  )),
-            ),*/
+            drawerListTile("Orders", Icons.shopping_basket_outlined, Colors.black, context, MyRoutes.orderspage),
             const Divider(
               color: Colors.white,
               height: 30.0,
             ),
-            drawerListTile("Settings", Icons.settings, Colors.black, context, "To be filled"),
-            /*const ListTile(
-              shape: BorderDirectional(top: BorderSide(
-              ),bottom: BorderSide(
-                style: BorderStyle.solid,
-              )),
-              iconColor: Colors.white,
-              leading: Icon(Icons.settings),
-              tileColor: Colors.blue,
-              title: Text("Settings",
-                  style: TextStyle(
-                      fontSize: 18.0,
-                      color: Colors.white
-                  )),
-            ),*/
+            drawerListTile("Settings", Icons.settings, Colors.black, context, MyRoutes.settingspage),
+
             const Divider(
               color: Colors.white,
               height: 30.0,
@@ -232,10 +205,15 @@ ListTile drawerListTile(String itemName, IconData itemIcon, Color iconPaint, Bui
             print(e.code);
           }
         }
-        else
-          {
-            Navigator.pushNamed(context, selection);
-          }
+      if(itemName == "Orders")
+        {
+          //Navigator.pushReplacementNamed(context, MyRoutes.orderspage);
+          Navigator.push(context, MaterialPageRoute(builder: (context) => OrderPage(key: UniqueKey())));
+        }
+      else
+        {
+          Navigator.pushNamed(context, selection);
+        }
     },
   );
 }

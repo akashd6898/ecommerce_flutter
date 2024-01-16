@@ -74,13 +74,23 @@ class _ProductPageState extends State<ProductPage> {
                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children:[
                     ElevatedButton(onPressed: ()
-                   {
-                   CheckoutPageDetails(checkoutProductCode: widget.productDetails.itemCode,
-                   checkoutProductImage: widget.productDetails.image,
-                   checkoutProductModel: widget.productDetails.model,
-                   checkoutProductPrice: widget.productDetails.price);
-                   priceObj.priceAdd(widget.productDetails.price);
-                   },
+                      {
+                       CheckoutPageDetails(checkoutProductCode: widget.productDetails.itemCode,
+                       checkoutProductImage: widget.productDetails.image,
+                       checkoutProductModel: widget.productDetails.model,
+                       checkoutProductPrice: widget.productDetails.price,
+                         checkoutProductBrand: widget.productDetails.brand,);
+                       priceObj.priceAdd(widget.productDetails.price);
+                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                         content: Text("Added to cart",
+                           textAlign: TextAlign.center,
+                           style: TextStyle(
+                             fontSize: 15,
+                           ),
+                         ),
+                         backgroundColor: Colors.green,
+                       ));
+                      },
                         style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all<Color>(
                               Colors.blue
@@ -102,6 +112,15 @@ class _ProductPageState extends State<ProductPage> {
                              favouriteProductPrice: widget.productDetails.price,
                              favouriteProductDescription: widget.productDetails.description
                          );
+                         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                           content: Text("Added to favourite",
+                             textAlign: TextAlign.center,
+                             style: TextStyle(
+                               fontSize: 15,
+                             ),
+                           ),
+                           backgroundColor: Colors.pinkAccent,
+                         ));
                        },
                        style: ButtonStyle(
                            backgroundColor: MaterialStateProperty.all<Color>(

@@ -6,4 +6,6 @@ class MyRoutes{
   static String productpage = '/productpage';
   static String favouritespage = '/favouritespage';
   static String signuppage = '/signuppage';
+  static String settingspage = '/settingspage';
+  static String orderspage = ' /orderspage';
 }

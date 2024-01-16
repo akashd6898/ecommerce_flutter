@@ -34,7 +34,7 @@ imageSet: ['https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.
       itemCode: "Applei11R64",
       category: "Mobile Phone",
       brand: "Apple",
-      model: "iphone 11 ",
+      model: "iphone 11",
       color: "Red",
       price: 20000.00,
       description: 'iphone 11 model 2019',

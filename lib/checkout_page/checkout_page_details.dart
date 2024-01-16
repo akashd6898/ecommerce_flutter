@@ -7,16 +7,18 @@ class CheckoutPageDetails
   String checkoutProductImage = '';
   late double checkoutProductPrice;
   String checkoutProductCode = "";
+  String checkoutProductBrand = "";
   static List checkoutList =[];
   //late List priceList = [];
   //final obj = Price();
-  CheckoutPageDetails({required this.checkoutProductCode,required this.checkoutProductImage, required this.checkoutProductModel , required this.checkoutProductPrice})
+  CheckoutPageDetails({required this.checkoutProductCode,required this.checkoutProductImage, required this.checkoutProductModel , required this.checkoutProductPrice, required this.checkoutProductBrand})
   {
     List checkoutItemDetailsList = [];
     checkoutItemDetailsList.add(checkoutProductCode);
     checkoutItemDetailsList.add(checkoutProductImage);
     checkoutItemDetailsList.add(checkoutProductModel);
     checkoutItemDetailsList.add(checkoutProductPrice);
+    checkoutItemDetailsList.add(checkoutProductBrand);
     //priceList.add(checkoutProductPrice);
     checkoutList.add(List.from(checkoutItemDetailsList));
     //obj.subtotal(priceList);
